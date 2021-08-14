@@ -28,9 +28,9 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
   } = props;
   const classes = cc([
     {
-      'w-16 h-16': size === 'small',
-      'w-48 h-48': size === 'large',
-      'w-60 h-60': size === 'big',
+      'w-16 h-auto': size === 'small',
+      'w-48 h-auto': size === 'large',
+      'w-60 h-auto': size === 'big',
     },
     className,
   ])

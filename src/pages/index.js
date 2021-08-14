@@ -9,7 +9,9 @@ const Home = () => {
         <title>Trivia Button</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='w-full text-center text-2xl font-bold'>Trivia Button</div>
+      <div className='w-full text-center text-2xl font-bold pb-6'>
+        Trivia Button
+      </div>
       <div className='flex justify-center items-center content-center'>
         <TriviaButton size='small' volume='low' />
         <TriviaButton size='large' volume='middle' />
