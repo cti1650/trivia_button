@@ -1,10 +1,10 @@
-import type { DOMAttributes, VFC } from "react";
+import { DOMAttributes, useCallback, VFC } from "react";
 import { useState } from 'react';
 import cc from 'classcat';
 
 type CommonType = {
   size?: 'small' | 'large' | 'big';
-  volume?: 'mute' | 'low' | 'middle' | 'high' | 'max';
+  volume?: 'mute' | 'min' | 'low' | 'middle' | 'high' | 'max';
   audioData?: string;
   onImageData?: string;
   offImageData?: string;
@@ -36,7 +36,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
   ])
   const [image, setImage] = useState(offImageData);
   const [buttonTimeOut, setButtonTimeOut] = useState(null);
-  const handleTriviaClick = (event: React.MouseEvent<HTMLInputElement>) => {
+  const handleTriviaClick = useCallback((event: React.MouseEvent<HTMLInputElement>) => {
     setImage(onImageData);
     const audio = new Audio(audioData);
     switch (volume) {
@@ -56,13 +56,17 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
         audio.muted = false;
         audio.volume = 0.25;
         break;
+      case 'min':
+        audio.muted = false;
+        audio.volume = 0.1;
+        break;
       case 'mute':
         audio.muted = true;
         audio.volume = 0;
         break;
       default:
         audio.muted = false;
-        audio.volume = 0.25;
+        audio.volume = 0.1;
     }
 
     audio.play().then(() => {
@@ -73,7 +77,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
         }, 600)
       );
     });
-  };
+  }, [image, volume, audioData, onImageData, offImageData]);
   return (
     <>
       <div>
@@ -91,7 +95,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
 
 TriviaButton.defaultProps = {
   size: 'small',
-  volume: 'low',
+  volume: 'min',
   audioData: 'get.mp3',
   onImageData: 'img/on.png',
   offImageData: 'img/off.png',

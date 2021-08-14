@@ -13,8 +13,8 @@ const Home = () => {
         Trivia Button
       </div>
       <div className='flex justify-center items-center content-center'>
-        <TriviaButton size='small' volume='low' />
-        <TriviaButton size='large' volume='middle' />
+        <TriviaButton size='small' volume='min' />
+        <TriviaButton size='large' volume='low' />
         <TriviaButton size='big' volume='high' />
       </div>
     </div>
