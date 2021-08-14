@@ -4,6 +4,7 @@ import cc from 'classcat';
 
 type CommonType = {
   size?: 'small' | 'large' | 'big';
+  volume?: 'mute' | 'low' | 'middle' | 'high' | 'max';
   audioData?: string;
   onImageData?: string;
   offImageData?: string;
@@ -19,6 +20,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
   const {
     onClick = () => { },
     size,
+    volume,
     audioData,
     onImageData,
     offImageData,
@@ -37,7 +39,32 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
   const handleTriviaClick = (event: React.MouseEvent<HTMLInputElement>) => {
     setImage(onImageData);
     const audio = new Audio(audioData); //　コンストラクタでaudio要素を生成
-    audio.volume = 0.2;
+    switch (volume) {
+      case 'max':
+        audio.muted = false;
+        audio.volume = 1;
+        break;
+      case 'high':
+        audio.muted = false;
+        audio.volume = 0.75;
+        break;
+      case 'middle':
+        audio.muted = false;
+        audio.volume = 0.5;
+        break;
+      case 'low':
+        audio.muted = false;
+        audio.volume = 0.25;
+        break;
+      case 'mute':
+        audio.muted = true;
+        audio.volume = 0;
+        break;
+      default:
+        audio.muted = false;
+        audio.volume = 0.25;
+    }
+
     audio.play().then(() => {
       onClick(event);
       setButtonTimeOut(
@@ -64,6 +91,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
 
 TriviaButton.defaultProps = {
   size: 'small',
+  volume: 'low',
   audioData: 'get.mp3',
   onImageData: 'img/on.png',
   offImageData: 'img/off.png',

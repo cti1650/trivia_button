@@ -11,9 +11,9 @@ const Home = () => {
       </Head>
       <div className='w-full text-center text-2xl font-bold'>Trivia Button</div>
       <div className='flex justify-center items-center content-center'>
-        <TriviaButton size='small' />
-        <TriviaButton size='large' />
-        <TriviaButton size='big' />
+        <TriviaButton size='small' volume='low' />
+        <TriviaButton size='large' volume='middle' />
+        <TriviaButton size='big' volume='high' />
       </div>
     </div>
   );
