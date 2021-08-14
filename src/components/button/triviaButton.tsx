@@ -22,6 +22,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
     audioData,
     onImageData,
     offImageData,
+    className,
   } = props;
   const classes = cc([
     {
@@ -29,6 +30,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
       'w-48 h-48': size === 'large',
       'w-60 h-60': size === 'big',
     },
+    className,
   ])
   const [image, setImage] = useState(offImageData);
   const [buttonTimeOut, setButtonTimeOut] = useState(null);
@@ -47,7 +49,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
   return (
     <>
       <div>
-        <button onClick={handleTriviaClick}>
+        <button className='focus:outline-none' onClick={handleTriviaClick}>
           <img
             src={image}
             alt='img'
