@@ -38,7 +38,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
   const [buttonTimeOut, setButtonTimeOut] = useState(null);
   const handleTriviaClick = (event: React.MouseEvent<HTMLInputElement>) => {
     setImage(onImageData);
-    const audio = new Audio(audioData); //　コンストラクタでaudio要素を生成
+    const audio = new Audio(audioData);
     switch (volume) {
       case 'max':
         audio.muted = false;
@@ -72,7 +72,7 @@ export const TriviaButton: VFC<ButtonType> = (props) => {
           setImage(offImageData);
         }, 600)
       );
-    }); // 再生
+    });
   };
   return (
     <>
